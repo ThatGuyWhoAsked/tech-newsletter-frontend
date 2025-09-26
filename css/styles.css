@@ -1,25 +1,27 @@
 :root {
     --primary-color: #007aff;
-    --accent-color: #6c757d;
-    --bg-color: rgba(255, 255, 255, 0.8);
+    --accent-color: #8e8e93;
+    --bg-color: rgba(255, 255, 255, 0.1);
     --text-color: #1d1d1f;
-    --card-bg: rgba(255, 255, 255, 0.6);
-    --border-color: rgba(255, 255, 255, 0.3);
-    --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    --glass-bg: rgba(255, 255, 255, 0.25);
-    --blur: blur(20px);
+    --card-bg: rgba(255, 255, 255, 0.2);
+    --border-color: rgba(255, 255, 255, 0.2);
+    --shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --blur: blur(30px);
+    --vibrancy: saturate(180%) blur(20px);
 }
 
 [data-theme="dark"] {
     --primary-color: #0a84ff;
-    --accent-color: #adb5bd;
-    --bg-color: rgba(18, 18, 20, 0.8);
+    --accent-color: #8e8e93;
+    --bg-color: rgba(28, 28, 30, 0.8);
     --text-color: #f5f5f7;
     --card-bg: rgba(28, 28, 30, 0.6);
-    --border-color: rgba(255, 255, 255, 0.1);
-    --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    --glass-bg: rgba(28, 28, 30, 0.25);
-    --blur: blur(20px);
+    --border-color: rgba(84, 84, 88, 0.5);
+    --shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    --glass-bg: rgba(28, 28, 30, 0.3);
+    --blur: blur(30px);
+    --vibrancy: saturate(180%) blur(20px);
 }
 
 * {
@@ -29,13 +31,15 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    line-height: 1.6;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+    line-height: 1.5;
     color: var(--text-color);
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, #f2f2f7 0%, #e5e5ea 100%);
     min-height: 100vh;
     transition: background 0.3s ease, color 0.3s ease;
     backdrop-filter: var(--blur);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 [data-theme="dark"] body {
@@ -45,6 +49,7 @@ body {
 header {
     background: var(--glass-bg);
     backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
     border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
@@ -64,35 +69,40 @@ header {
 
 .nav-brand {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--primary-color);
-    background: rgba(255, 255, 255, 0.2);
-    padding: 0.5rem 1rem;
-    border-radius: 15px;
+    background: var(--glass-bg);
     backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    padding: 0.5rem 1rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
 }
 
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .nav-menu a {
     text-decoration: none;
     color: var(--text-color);
     font-weight: 400;
-    padding: 0.5rem 1rem;
-    border-radius: 10px;
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
     transition: all 0.3s ease;
     background: var(--glass-bg);
     backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: 1px solid transparent;
 }
 
 .nav-menu a:hover {
     color: var(--primary-color);
     background: rgba(0, 122, 255, 0.1);
-    transform: translateY(-2px);
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
 }
 
 .dark-mode-toggle {
@@ -101,17 +111,20 @@ header {
     gap: 0.5rem;
     cursor: pointer;
     color: var(--text-color);
-    padding: 0.5rem 1rem;
-    border-radius: 15px;
+    padding: 0.75rem 1.25rem;
+    border-radius: 16px;
     background: var(--glass-bg);
     backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: 1px solid var(--border-color);
     transition: all 0.3s ease;
 }
 
 .dark-mode-toggle:hover {
     color: var(--primary-color);
     background: rgba(0, 122, 255, 0.1);
-    transform: translateY(-2px);
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
 }
 
 .hero {
@@ -127,6 +140,10 @@ header {
     overflow: hidden;
 }
 
+[data-theme="dark"] .hero {
+    background: linear-gradient(135deg, #2c2c2e, #1e1e1e);
+}
+
 .hero::before {
     content: '';
     position: absolute;
@@ -134,23 +151,16 @@ header {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--glass-bg);
     backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
     z-index: 1;
-}
-
-[data-theme="dark"] .hero {
-    background: linear-gradient(135deg, #2c2c2e, #1e1e1e);
-    color: var(--text-color);
-}
-
-[data-theme="dark"] .hero::before {
-    background: rgba(0, 0, 0, 0.2);
 }
 
 .hero-content {
     position: relative;
     z-index: 2;
+    max-width: 800px;
 }
 
 .hero-image {
@@ -163,20 +173,21 @@ header {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    border: 1px solid var(--border-color);
 }
 
 .hero-content h1 {
     font-size: 3.5rem;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 1rem;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .subheadline {
     font-size: 1.25rem;
     margin-bottom: 2rem;
     opacity: 0.9;
-    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
 }
 
 .subscription-form {
@@ -186,6 +197,7 @@ header {
     gap: 0.5rem;
     background: var(--glass-bg);
     backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
     border-radius: 20px;
     padding: 0.5rem;
     border: 1px solid var(--border-color);
@@ -198,8 +210,11 @@ header {
     border: none;
     border-radius: 15px;
     font-size: 1rem;
-    background: rgba(255, 255, 255, 0.8);
+    background: var(--card-bg);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
     color: var(--text-color);
+    border: 1px solid var(--border-color);
 }
 
 .subscription-form input::placeholder {
@@ -216,6 +231,7 @@ header {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+    border: 1px solid var(--primary-color);
 }
 
 .subscription-form button:hover {
@@ -227,6 +243,13 @@ header {
     padding: 4rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    background: var(--glass-bg);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border-radius: 20px;
+    margin: 2rem auto;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
 }
 
 .featured h2, .benefits h2, .about h2 {
@@ -234,12 +257,14 @@ header {
     font-size: 2.5rem;
     margin-bottom: 3rem;
     color: var(--text-color);
-    background: var(--glass-bg);
+    background: var(--card-bg);
     backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
     padding: 1rem 2rem;
-    border-radius: 20px;
+    border-radius: 16px;
     display: inline-block;
     box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
 }
 
 .articles-grid {
@@ -251,6 +276,7 @@ header {
 .article-card {
     background: var(--card-bg);
     backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
     border-radius: 20px;
     overflow: hidden;
     box-shadow: var(--shadow);
@@ -289,13 +315,16 @@ header {
     font-weight: 600;
     background: var(--glass-bg);
     backdrop-filter: var(--blur);
-    border-radius: 10px;
-    padding: 0.5rem 1rem;
+    -webkit-backdrop-filter: var(--blur);
+    border-radius: 12px;
+    padding: 0.75rem 1.25rem;
     transition: all 0.3s ease;
+    border: 1px solid transparent;
 }
 
 .read-more:hover {
     background: rgba(0, 122, 255, 0.1);
+    border-color: var(--primary-color);
     transform: translateX(5px);
 }
 
@@ -310,6 +339,7 @@ header {
     padding: 2rem;
     background: var(--card-bg);
     backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
     border-radius: 20px;
     box-shadow: var(--shadow);
     border: 1px solid var(--border-color);
@@ -327,11 +357,13 @@ header {
     margin-bottom: 1rem;
     background: var(--glass-bg);
     backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
     width: 80px;
     height: 80px;
     line-height: 80px;
     border-radius: 50%;
     display: inline-block;
+    border: 1px solid var(--border-color);
 }
 
 .benefit-item h3 {
@@ -342,15 +374,6 @@ header {
 
 .benefit-item p {
     color: var(--accent-color);
-}
-
-.about {
-    background: var(--glass-bg);
-    backdrop-filter: var(--blur);
-    border-radius: 20px;
-    margin: 2rem;
-    padding: 3rem;
-    box-shadow: var(--shadow);
 }
 
 .about-content {
@@ -368,7 +391,9 @@ header {
     box-shadow: var(--shadow);
     background: var(--glass-bg);
     backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
     padding: 5px;
+    border: 1px solid var(--border-color);
 }
 
 .about-text h2 {
@@ -384,9 +409,12 @@ header {
 .footer {
     background: var(--glass-bg);
     backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
     padding: 3rem 2rem 1rem;
     border-top: 1px solid var(--border-color);
     margin-top: 4rem;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .footer-content {
@@ -419,12 +447,14 @@ header {
     color: var(--accent-color);
     background: var(--glass-bg);
     backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
     width: 50px;
     height: 50px;
     line-height: 50px;
     text-align: center;
     border-radius: 50%;
     transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
 }
 
 .social-links a:hover {
@@ -443,10 +473,15 @@ header {
     display: block;
     padding: 0.5rem 0;
     transition: color 0.3s ease;
+    border-radius: 8px;
+    padding-left: 0.5rem;
 }
 
 .footer-nav a:hover {
     color: var(--text-color);
+    background: var(--glass-bg);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
 }
 
 .footer-bottom {
@@ -456,6 +491,7 @@ header {
     color: var(--accent-color);
     background: var(--glass-bg);
     backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
     border-radius: 20px 20px 0 0;
     margin-top: 2rem;
     padding: 1rem 2rem;
@@ -492,9 +528,13 @@ header {
         text-align: center;
     }
 
-    .about {
+    .about, .featured, .benefits {
         margin: 1rem;
         padding: 2rem;
+    }
+
+    .hero-image {
+        max-width: 100%;
     }
 }
 
