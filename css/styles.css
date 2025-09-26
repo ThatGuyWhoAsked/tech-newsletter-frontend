@@ -121,8 +121,8 @@ header {
     min-height: 70vh;
     text-align: center;
     padding: 2rem;
-    background: linear-gradient(135deg, var(--primary-color), #0056b3);
-    color: white;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    color: var(--text-color);
     position: relative;
     overflow: hidden;
 }
@@ -137,6 +137,15 @@ header {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: var(--blur);
     z-index: 1;
+}
+
+[data-theme="dark"] .hero {
+    background: linear-gradient(135deg, #2c2c2e, #1e1e1e);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .hero::before {
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .hero-content {
