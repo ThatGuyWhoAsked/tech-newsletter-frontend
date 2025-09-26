@@ -1,0 +1,8 @@
+[build]
+  publish = "."
+
+# Optional: Redirects for single-page app routing (if needed for future SPA features)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

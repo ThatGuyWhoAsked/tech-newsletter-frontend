@@ -1,3 +1,4 @@
+const API_BASE = 'http://localhost:3000'; // Change this to your deployed backend URL (e.g., 'https://your-backend.onrender.com') for production
 document.addEventListener('DOMContentLoaded', function() {
     const toggle = document.querySelector('.dark-mode-toggle');
     const body = document.body;
@@ -41,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             try {
-                const response = await fetch('http://localhost:3000/api/subscribe', {
+                const response = await fetch(`${API_BASE}/api/subscribe`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
