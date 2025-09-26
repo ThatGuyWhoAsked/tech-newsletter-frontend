@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:3000'; // Change this to your deployed backend URL (e.g., 'https://your-backend.onrender.com') for production
+const API_BASE = 'https://tech-newsletter-backend-10benoyub-rithwiks-projects-a4a1ebbd.vercel.app'; // Production backend URL; use 'http://localhost:3000' for local development
 document.addEventListener('DOMContentLoaded', function() {
     const toggle = document.querySelector('.dark-mode-toggle');
     const body = document.body;
