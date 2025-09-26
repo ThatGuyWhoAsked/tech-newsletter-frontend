@@ -14,6 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const newTheme = body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
         body.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
+        console.log('Theme switched to:', newTheme);
+        console.log('Computed --text-color:', getComputedStyle(body).getPropertyValue('--text-color').trim());
+        console.log('Computed --accent-color:', getComputedStyle(body).getPropertyValue('--accent-color').trim());
+        console.log('Computed --glass-bg:', getComputedStyle(body).getPropertyValue('--glass-bg').trim());
+        // Sample hover style check (simulate by logging expected)
+        console.log('Expected nav-menu a:hover bg: rgba(var(--primary-rgb), 0.1) - check in dev tools for contrast');
         updateToggle(newTheme);
     });
 
